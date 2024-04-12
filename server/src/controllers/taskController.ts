@@ -44,15 +44,22 @@ export const getTaskById = async (req: Request, res: Response) => {
 // PUT update a task by ID
 export const updateTask = async (req: Request, res: Response) => {
   try {
-    const { completed } = req.body;
+    const { taskName, completed } = req.body;
+    const updatedFields: { name?: string; completed?: boolean } = {};
+
+    if (taskName) updatedFields.name = taskName;
+    if (completed !== undefined) updatedFields.completed = completed;
+
     const updatedTask = await Task.findByIdAndUpdate(
       req.params.id,
-      { completed },
+      updatedFields,
       { new: true }
     );
+
     if (!updatedTask) {
       return res.status(404).json({ message: "Task not found" });
     }
+
     res.json(updatedTask);
   } catch (error) {
     console.error(error);
