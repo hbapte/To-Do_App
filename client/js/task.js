@@ -57,8 +57,9 @@ async function updateTask(taskId, newName) {
   }
 }
 
-function enableTaskEditing(taskId, taskNameElement) {
+function enableTaskEditing(taskId, taskNameElement, editButton = null) {
   const taskName = taskNameElement.textContent;
+  const originalName = taskName; // Store the original task name
   const input = document.createElement('input');
   input.type = 'text';
   input.value = taskName;
@@ -73,7 +74,24 @@ function enableTaskEditing(taskId, taskNameElement) {
   taskNameElement.textContent = '';
   taskNameElement.appendChild(input);
   input.focus();
+
+  // Change the edit button to a save button if provided
+  if (editButton) {
+    editButton.textContent = 'Save';
+    editButton.addEventListener('click', () => {
+      const newName = input.value.trim();
+      if (newName !== '') {
+        updateTask(taskId, newName);
+      } else {
+        // If the input is empty, revert back to the original name
+        input.value = originalName;
+      }
+    });
+  }
 }
+
+
+
 
 function displayTasks(tasks) {
   const tasksList = document.getElementById('tasksList');
@@ -108,7 +126,7 @@ function displayTasks(tasks) {
     const editButton = document.createElement('button');
     editButton.textContent = 'Edit';
     editButton.addEventListener('click', () => {
-      enableTaskEditing(task._id, taskName);
+      enableTaskEditing(task._id, taskName, editButton);
     });
     taskButtons.appendChild(editButton);
 
@@ -125,6 +143,8 @@ function displayTasks(tasks) {
     tasksList.appendChild(taskCard);
   });
 }
+
+
 
 async function addTask(event) {
   event.preventDefault();
@@ -149,3 +169,4 @@ async function addTask(event) {
 document.getElementById('addTaskForm').addEventListener('submit', addTask);
 
 fetchTasks();
+
