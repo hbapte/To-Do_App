@@ -28,7 +28,42 @@ async function toggleTaskStatus(taskId, completed) {
   }
 }
 
+async function deleteTask(taskId) {
+  try {
+      const response = await fetch(`${baseURL}/${taskId}`, {
+          method: 'DELETE'
+      });
+      const data = await response.json();
+      console.log(data.message); // Log the message from the server
+      fetchTasks(); // Refresh the task list after deletion
+  } catch (error) {
+      console.error('Error deleting task:', error);
+  }
+}
 
+function displayTasks(tasks) {
+  const tasksList = document.getElementById('tasksList');
+  tasksList.innerHTML = '';
+
+  tasks.forEach(task => {
+      const taskCard = document.createElement('div');
+      taskCard.classList.add('task-card');
+
+      // Checkbox and task name elements...
+
+      const deleteButton = document.createElement('button');
+      deleteButton.textContent = 'Delete';
+      deleteButton.classList.add('delete');
+      deleteButton.addEventListener('click', () => {
+          deleteTask(task._id); // Call deleteTask function when delete button is clicked
+      });
+      taskButtons.appendChild(deleteButton);
+
+      taskCard.appendChild(taskButtons);
+
+      tasksList.appendChild(taskCard);
+  });
+}
 
 function displayTasks(tasks) {
   const tasksList = document.getElementById('tasksList');
@@ -61,10 +96,13 @@ function displayTasks(tasks) {
       editButton.textContent = 'Edit';
       taskButtons.appendChild(editButton);
 
-      const deleteButton = document.createElement('button');
-      deleteButton.textContent = 'Delete';
-      deleteButton.classList.add('delete');
-      taskButtons.appendChild(deleteButton);
+ const deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Delete';
+        deleteButton.classList.add('delete');
+        deleteButton.addEventListener('click', () => {
+            deleteTask(task._id); // Call deleteTask function when delete button is clicked
+        });
+        taskButtons.appendChild(deleteButton);
 
       taskCard.appendChild(taskButtons);
 
