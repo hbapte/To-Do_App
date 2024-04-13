@@ -1,6 +1,6 @@
 import express, { Express, Request, Response } from "express";
 import path from "path";
-import { loginController } from "./controllers/loginController";
+import loginController from "./controllers/loginController";
 import registerController  from "./controllers/registerController";
 import { forgotPasswordController } from "./controllers/forgotPasswordController";
 import { passwordResetController } from "./controllers/resetPasswordController";
