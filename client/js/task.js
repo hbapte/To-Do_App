@@ -7,7 +7,8 @@ async function fetchTasks() {
     tasks = tasks.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)); // Sort tasks by createdAt in descending order
     displayTasks(tasks);
   } catch (error) {
-    console.error('Error fetching tasks:', error);
+    console.error('session expired, please login:', error);
+    window.location.href = '/'
   }
 }
 
