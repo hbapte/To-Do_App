@@ -1,5 +1,3 @@
-// controllers/taskController.ts
-
 import { Request, Response } from "express";
 import Task from "../db/models/Task";
 
