@@ -1,7 +1,13 @@
 import express from "express";
+import authMiddleware from "../middlewares/authMiddleware";
 import { getAllTasks, createTask, getTaskById, updateTask, deleteTask } from "../controllers/taskController";
 
+
 const router = express.Router();
+
+// Protect routes with authMiddleware
+router.use(authMiddleware);
+
 
 // GET all tasks
 router.get("/", getAllTasks);
