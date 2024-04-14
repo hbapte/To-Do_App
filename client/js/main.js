@@ -25,21 +25,6 @@ document.getElementById('agree').addEventListener('change', function() {
 });
 
 
-// Storing and Logging Registration Data
-function storeRegistrationData(formData) {
-  var existingData = localStorage.getItem('registrationData');
-  var registrationData = existingData ? JSON.parse(existingData) : [];
-  // Push the new form data to the array
-  registrationData.push(formData);
-
-  // Store the updated array back in local storage
-  localStorage.setItem('registrationData', JSON.stringify(registrationData));
-
-  // Log the stored data to the console
-  console.log('Stored registration data:', registrationData);
-}
-
-
 function validateForm(event) {
     event.preventDefault(); 
   
@@ -126,23 +111,46 @@ function validateForm(event) {
         agreeCheckbox.style.borderColor = ''; 
       }
   
+   
+    // If form validation passes, send data to server
     if (valid) {
-        var formData = {
-            names: names,
-            email: email,
-            username: username,
-            password: password,
-            confirmPassword: confirmPassword,
-            agree: agreeCheckbox.checked,
-            newsletter: newsletterCheckbox.checked
-        };
-        
-        storeRegistrationData(formData);
-  
+      var formData = {
+          names: names,
+          email: email,
+          username: username,
+          password: password,
+          confirmPassword: confirmPassword,
+          agree: agreeCheckbox.checked,
+          newsletter: newsletterCheckbox.checked
+      };
+      
+      // Send form data to server
+      fetch('http://localhost:3000/register', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(formData)
+      })
+      .then(response => {
+          if (!response.ok) {
+              throw new Error('Registration failed');
+          }
+          return response.json();
+      })
+      .then(data => {
+          
+          console.log('Registration successful:', data);
+          showSuccessMessage();
+          clearForm();
 
-        showSuccessMessage();
-        clearForm();; 
-    }
+          window.location.href = "/login.html";
+      })
+      .catch(error => {
+        console.error('Registration error:', error);       
+        showError(error.message.includes('Username or email already exists') ? 'Username or email already exists' : 'Registration failed. Please try again later.');
+      });
+  }
   
     return valid; 
 }
@@ -216,6 +224,18 @@ function showSuccessMessage() {
     }, 3500); 
 }
 
+function showError(message) {
+  var errorMessageElement = document.getElementById('SignupSent');
+  errorMessageElement.textContent = message;
+  errorMessageElement.style.color = 'red';
+  errorMessageElement.style.textAlign = 'center';
+
+  setTimeout(function () {
+    errorMessageElement.textContent = '';
+  }, 3000);
+}
+
+
 function clearForm() {
     document.getElementById('names').value = '';
     document.getElementById('email').value = '';
@@ -226,22 +246,12 @@ function clearForm() {
 }
 
 
-  // PASSWORD VISIBILITY =======
+//  PASSWORD VISIBILITY
+  // const passwordInput = document.getElementById('password');
+  // const toggleVisibilityBtn = document.getElementById('togglePasswordVisibility');
 
-
-  // function myFunction() {
-  //   var x = document.getElementById("password-");
-  //   if (x.type === "password") {
-  //     x.type = "text";
-  //   } else {
-  //     x.type = "password";
-  //   }
-  // }
-  const passwordInput = document.getElementById('password');
-  const toggleVisibilityBtn = document.getElementById('togglePasswordVisibility');
-
-  toggleVisibilityBtn.addEventListener('click', function() {
-    const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-    passwordInput.setAttribute('type', type);
-  });
+  // toggleVisibilityBtn.addEventListener('click', function() {
+  //   const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+  //   passwordInput.setAttribute('type', type);
+  // });
 
