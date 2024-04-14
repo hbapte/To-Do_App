@@ -1,10 +1,12 @@
 import mongoose, { Schema, Document } from 'mongoose';
+import User  from './user';
 
 export interface ITask extends Document {
   name: string;
   completed: boolean;
   createdAt: Date;
   updatedAt: Date;
+  user: User['_id']
 }
 
 const TaskSchema: Schema = new Schema({
@@ -14,5 +16,5 @@ const TaskSchema: Schema = new Schema({
   updatedAt: { type: Date, default: Date.now }
 });
 
-// Define and export the Task model
+
 export default mongoose.model<ITask>('Task', TaskSchema);
