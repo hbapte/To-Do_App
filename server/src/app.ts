@@ -25,7 +25,7 @@ app.use(express.static(path.join(__dirname, '../../', 'client')));
 
 // Set up your routes
 app.get("/", (req: Request, res: Response) => {
-  res.sendFile(path.join(__dirname, '../../', 'client', 'index.html')); // Send the index.html file from the 'client' directory
+  res.sendFile(path.join(__dirname, '../../', 'client', 'login.html'));
 });
 
 app.get("/forgot-password", (req: Request, res: Response) => {
@@ -59,7 +59,7 @@ app.use("/forgot-password", forgotPasswordController);
 app.use("/reset-password", passwordResetController);
 
 
-app.use("/tasks", taskRoutes); // Use taskRoutes for handling task-related routes
+app.use("/tasks", taskRoutes); 
 
 
 
