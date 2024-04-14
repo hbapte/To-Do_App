@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/style.css">
-    <title>Document</title>
+    <link rel="stylesheet" href="./css/style2.css">
+    <title>ToDo App - Forgot Password</title>
 </head>
 <body>
     <main id="m-f-password"> 
@@ -14,14 +14,16 @@
     
             <label for="email">Email Address: </label>
             <input type="email" name="email" id="email">
-    
-           
-    
+            <div id="emailError" class="error-message"></div>
+            <div id="usernameError" class="error-message"></div>
+
             <p class="info">* After submitting form, you will receive a link to create a new password via email</p>
             <button type="submit" class="forgot-password">Forgot Password </button>
+            <div id="resetSent"></div>
+
         </form>
     </main>
     
-    <script src="./js/main.js"></script>
+    <script src="./js/forgot-psw.js"></script>
 </body>
 </html>
