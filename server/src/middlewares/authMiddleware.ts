@@ -8,7 +8,7 @@ interface CustomRequest extends Request {
 const authMiddleware = (req: CustomRequest, res: Response, next: NextFunction) => {
   const token = req.cookies.token; 
   if (!token) {
-    return res.redirect('/login?sessionExpired=true');
+    return res.redirect('/?sessionExpired=true');
       }
 
   try {
@@ -17,7 +17,7 @@ const authMiddleware = (req: CustomRequest, res: Response, next: NextFunction) =
     next();
   } catch (error) {
     console.error('Error verifying JWT:', error);
-    return res.redirect('/login?sessionExpired=true');
+    return res.redirect('/?sessionExpired=true');
   }
 };
 
