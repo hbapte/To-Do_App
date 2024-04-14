@@ -4,9 +4,10 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken') ;
 
 
-const loginController = async (req: Request, res: Response) => {
-  const { emailUsername, password, rememberMe } = req.body;
 
+const loginController = async (req: Request, res: Response) => {
+  const { emailUsername, password, rememberMe} = req.body;
+  // console.log('Login request:', req.body);
   try {
     // Find the user by email or username
     const user = await User.findOne({ $or: [{ email: emailUsername }, { username: emailUsername }] });
@@ -20,14 +21,17 @@ const loginController = async (req: Request, res: Response) => {
     const passwordMatch = await bcrypt.compare(password, user.password);
 
     if (!passwordMatch) {
-      return res.status(401).json({ error: 'Wrong password' }); 
+      // Wrong password
+      return res.status(401).json({ error: 'Wrong password' });
     }
 
-    // Passwords match, generate a JWT token
-    const expiresIn = rememberMe ? '7d' : '2m'; 
-    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn });
+     // JWT token with JWT_SECRET
+     const expiresIn = rememberMe ? '7d' : '1m'; 
+     const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn });
+ 
+     console.log('Login successful');
+     res.cookie('token', token, { httpOnly: true }); 
 
-    // Send the token back to the client
     res.status(200).json({ token });
   } catch (error) {
     console.error('Error logging in user:', error);
@@ -36,7 +40,6 @@ const loginController = async (req: Request, res: Response) => {
 };
 
 export default loginController;
-
 
 // import { Router, Request, Response } from 'express';
 // import User from '../db/models/user';
