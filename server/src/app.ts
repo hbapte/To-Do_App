@@ -2,7 +2,7 @@ import express, { Express, Request, Response } from "express";
 import path from "path";
 import loginController from "./controllers/loginController";
 import registerController  from "./controllers/registerController";
-import { forgotPasswordController } from "./controllers/forgotPasswordController";
+import forgotPasswordController from "./controllers/forgotPasswordController";
 import { passwordResetController } from "./controllers/resetPasswordController";
 import { validateRegistration } from "./middlewares/registerValidation";
 import authMiddleware from './middlewares/authMiddleware';
@@ -48,9 +48,6 @@ app.get("/forgot-password", (req: Request, res: Response) => {
   res.sendFile(path.join(__dirname, '../../', 'client', 'forgot-pswd.html'));
 });
 
-app.get("/dashboard", authMiddleware, (req: Request, res: Response) => {
-  res.sendFile(path.join(__dirname, '../../', 'client', 'dashboard.html'));
-});
 
 //Routes
 app.use("/login", loginController);
