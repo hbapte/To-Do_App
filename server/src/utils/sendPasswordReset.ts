@@ -11,7 +11,7 @@ const port = process.env.PORT;
 const expirationTime = new Date();
 expirationTime.setHours(expirationTime.getHours() + 24); // Set expiration time to 24 hours from now
 
-const sendPasswordResetEmail = async (email: string, resetToken: string, names: string) => {
+const sendPasswordResetEmail = async (email: string, resetToken: string) => {
     const resetTokenUrl = `http://localhost:${port}/reset-password?token=${resetToken}&expires=${expirationTime.getTime()}`;
 
       
@@ -30,7 +30,7 @@ const sendPasswordResetEmail = async (email: string, resetToken: string, names: 
         html:     
         
         `
-        <p>Hello, ${names}</p>
+        <p>Hello, </p>
         <p>Click the following link to reset your password: </p>
           <p><a href="${resetTokenUrl}">Reset Password</a></p>
           <p>If that doesn't work, copy and paste the following link in your browser:</p>
