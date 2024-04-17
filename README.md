@@ -11,7 +11,7 @@ A simple to-do list application with frontend and backend functionality.
 ## Technologies Used
 
 - **Frontend:** HTML, CSS, JavaScript
-- **Backend:** Node.js, Express.js
+- **Backend:** Node.js, Express.js, Typescript
 - **Database:** MongoDB
 - **Authentication:** JSON Web Tokens (JWT)
 - **Other:** bcrypt, nodemailer, dotenv
@@ -29,6 +29,13 @@ To run this project locally, follow these steps:
 ## API Documentation
 
 This project includes API documentation generated with Swagger. You can view the API documentation by go to [https://app.swaggerhub.com/apis/IJBAPTE/To_Do/1.0.0#/](https://app.swaggerhub.com/apis/IJBAPTE/To_Do/1.0.0#/)
+
+You can also view some screenshot here
+
+[!Note](Before Testing API, disable authMiddleware)
+
+View screenshot and other documentation in [/api-docs](/server/api-docs.md)
+
 
 ## Usage
 
