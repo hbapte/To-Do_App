@@ -2,9 +2,6 @@
 
 A simple to-do list application with frontend and backend functionality.
 
-## Screenshot
-
-
 ## Features
 
 - User registration and login<!-- - Forgot password functionality -->
@@ -18,6 +15,10 @@ A simple to-do list application with frontend and backend functionality.
 - **Database:** MongoDB
 - **Authentication:** JSON Web Tokens (JWT)
 - **Other:** bcrypt, nodemailer, dotenv
+
+## Screenshot
+
+![screenshot](/server/screenshot/To%20Do%20App.jpg)
 
 ## Getting Started
 
