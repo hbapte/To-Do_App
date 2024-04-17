@@ -2,6 +2,9 @@
 
 A simple to-do list application with frontend and backend functionality.
 
+## Screenshot
+
+
 ## Features
 
 - User registration and login<!-- - Forgot password functionality -->
@@ -30,12 +33,8 @@ To run this project locally, follow these steps:
 
 This project includes API documentation generated with Swagger. You can view the API documentation by go to [https://app.swaggerhub.com/apis/IJBAPTE/To_Do/1.0.0#/](https://app.swaggerhub.com/apis/IJBAPTE/To_Do/1.0.0#/)
 
-You can also view some screenshot here
-
-[!Note](Before Testing API, disable authMiddleware)
-
-View screenshot and other documentation in [/api-docs](/server/api-docs.md)
-
+> [!Note]
+> View screenshot and all documentation at [/server/README.md](/server/README.md)
 
 ## Usage
 
