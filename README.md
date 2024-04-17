@@ -18,7 +18,7 @@ A simple to-do list application with frontend and backend functionality.
 
 ## Screenshot
 
-![screenshot](/server/screenshot/To%20Do%20App.jpg)
+![To Do App Screenshot](/server/screenshot/To%20Do%20App.jpg)
 
 ## Getting Started
 
