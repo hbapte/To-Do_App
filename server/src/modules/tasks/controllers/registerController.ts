@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-import User from '../db/models/user';
-import sendVerificationEmail from '../utils/sendVerificationEmail';
+import User from '../../../database/models/user';
+import sendVerificationEmail from '../../../utils/sendVerificationEmail';
 const bcrypt = require('bcrypt');
 
 

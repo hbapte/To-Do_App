@@ -1,10 +1,10 @@
 // forgotPasswordController.ts
 import { Request, Response } from 'express';
-import User from '../db/models/user';
-import { validateForgot } from '../middlewares/forgotValidation';
+import User from '../../../database/models/user';
+import { validateForgot } from '../../../middlewares/forgotValidation';
 const bcrypt = require('bcrypt');
 const crypto = require('crypto');
-import sendPasswordResetEmail from '../utils/sendPasswordReset';
+import sendPasswordResetEmail from '../../../utils/sendPasswordReset';
 
 const forgotPasswordController = async (req: Request, res: Response) => {
     const { email } = req.body;

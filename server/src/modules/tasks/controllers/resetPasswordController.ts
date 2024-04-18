@@ -1,7 +1,7 @@
 import {Router, Request, Response } from 'express';
 const bcrypt = require('bcrypt');
-import User from '../db/models/user';
-import { validateReset } from '../middlewares/resetValidation';
+import User from '../../../database/models/user';
+import { validateReset } from '../../../middlewares/resetValidation';
 
 const router = Router();
 

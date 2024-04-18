@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import User from '../db/models/user';
+import User from '../../../database/models/user';
 
 
 const verifyEmailController = async (req: Request, res: Response) => {
