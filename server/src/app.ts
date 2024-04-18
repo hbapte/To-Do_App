@@ -1,14 +1,15 @@
 import express, { Express, Request, Response } from "express";
 import path from "path";
-import loginController from "./controllers/loginController";
-import registerController  from "./controllers/registerController";
-import forgotPasswordController from "./controllers/forgotPasswordController";
-import { passwordResetController } from "./controllers/resetPasswordController";
+import loginController from "./modules/tasks/controllers/loginController";
+import registerController  from "./modules/tasks/controllers/registerController";
+import forgotPasswordController from "./modules/tasks/controllers/forgotPasswordController";
+import { passwordResetController } from "./modules/tasks/controllers/resetPasswordController";
 import { validateRegistration } from "./middlewares/registerValidation";
 import authMiddleware from './middlewares/authMiddleware';
 const cookieParser = require('cookie-parser');
 import taskRoutes from "./routes/taskRoutes";
-import "./config/db"; 
+import "./database/config/db";  
+
 
 
 
