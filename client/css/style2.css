@@ -256,6 +256,18 @@ nav ul {
    margin-top: .4rem; 
    
 }
+
+
+#checks {
+  display: flex;
+  justify-content: space-between;
+  gap: 7rem;
+  align-items: center;
+  font-size: .7rem;
+  margin-top: .4rem;
+
+}
+
  
 
   fieldset {
@@ -263,19 +275,6 @@ nav ul {
   }
 
   
-
-
-  #checks {
-    display: flex;
-    justify-content: space-between;
-    gap: 7rem;
-    align-items: center;
-    font-size: .7rem;
-    margin-top: .4rem;
-
-  }
-
-
 
 
 
@@ -383,7 +382,7 @@ input:checked {
   margin-top:  .7rem;
   display: flex;
   justify-content: space-between;
-  gap: 4rem;
+  gap: 8rem;
 }
 
 .signup-check{
