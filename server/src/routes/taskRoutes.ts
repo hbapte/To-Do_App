@@ -1,12 +1,12 @@
 import express from "express";
 import authMiddleware from "../middlewares/authMiddleware";
-import { getAllTasks, createTask, getTaskById, updateTask, deleteTask } from "../modules/tasks/controllers/taskController";
+import { getAllTasks, createTask, getTaskById, updateTask, deleteTask } from "../modules/tasks/repository/taskRepository";
 
 
 const router = express.Router();
 
 // Protect routes with authMiddleware
-router.use(authMiddleware);
+// router.use(authMiddleware);
 
 
 // GET all tasks
