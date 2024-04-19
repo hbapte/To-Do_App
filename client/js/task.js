@@ -1,4 +1,4 @@
-const baseURL = 'http://localhost:3000/tasks';
+const baseURL = 'http://localhost:3000/api/tasks'; 
 
 async function fetchTasks() {
   try {
