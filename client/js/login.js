@@ -1,6 +1,6 @@
 // Function to handle login authentication
 function handleLogin(emailUsername, password, rememberMe) {
-    fetch('http://localhost:3000/login', {
+    fetch('http://localhost:3000/api/auth/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
