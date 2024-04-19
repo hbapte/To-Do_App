@@ -20,9 +20,9 @@ document.getElementById('confirm-password').addEventListener('keyup', function()
   validateField(this);
 });
 
-document.getElementById('agree').addEventListener('change', function() {
-  validateCheckbox(this);
-});
+// document.getElementById('agree').addEventListener('change', function() {
+//   validateCheckbox(this);
+// });
 
 
 function validateForm(event) {
@@ -33,8 +33,8 @@ function validateForm(event) {
     var username = document.getElementById('username').value.trim();
     var password = document.getElementById('password').value.trim();
     var confirmPassword = document.getElementById('confirm-password').value.trim();
-    var agreeCheckbox = document.getElementById('agree');
-    var newsletterCheckbox = document.getElementById('newsletter');
+    // var agreeCheckbox = document.getElementById('agree');
+    // var newsletterCheckbox = document.getElementById('newsletter');
     var namesError = document.getElementById('namesError');
     var emailError = document.getElementById('emailError');
     var usernameError = document.getElementById('usernameError');
@@ -99,17 +99,18 @@ function validateForm(event) {
       valid = false;
     }
 
-    // Validate agree checkbox
-    if (!agreeCheckbox.checked) {
-        agreeLabel.style.color = 'red';
-        agreeLink.style.color = 'red';
-        agreeCheckbox.style.border = '1px solid red';
-        valid = false;
-      } else {
-        agreeLabel.style.color = '';
-        agreeLink.style.color = '';
-        agreeCheckbox.style.borderColor = ''; 
-      }
+    // // Validate agree checkbox
+    // if (!agreeCheckbox.checked) {
+    //     agreeLabel.style.color = 'red';
+    //     agreeLink.style.color = 'red';
+    //     agreeCheckbox.style.border = '1px solid red';
+    //     valid = false;
+    //   } else {
+    //     agreeLabel.style.color = '';
+    //     agreeLink.style.color = '';
+    //     agreeCheckbox.style.borderColor = ''; 
+    //   }
+      
   
    
     // If form validation passes, send data to server
@@ -120,36 +121,34 @@ function validateForm(event) {
           username: username,
           password: password,
           confirmPassword: confirmPassword,
-          agree: agreeCheckbox.checked,
-          newsletter: newsletterCheckbox.checked
+          // agree: agreeCheckbox.checked,
+          // newsletter: newsletterCheckbox.checked 
       };
       
       // Send form data to server
-      fetch('http://localhost:3000/register', {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(formData)
-      })
-      .then(response => {
-          if (!response.ok) {
-              throw new Error('Registration failed');
-          }
-          return response.json();
-      })
-      .then(data => {
-          
-          console.log('Registration successful:', data);
-          showSuccessMessage();
-          clearForm();
-
-          window.location.href = "/login.html";
-      })
-      .catch(error => {
+      fetch('http://localhost:3000/api/auth/register', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Registration failed');
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log('Registration successful:', data);
+        showSuccessMessage();
+        clearForm();
+        window.location.href = "/login.html";
+    })
+    .catch(error => {
         console.error('Registration error:', error);       
         showError(error.message.includes('Username or email already exists') ? 'Username or email already exists' : 'Registration failed. Please try again later.');
-      });
+    });
   }
   
     return valid; 
@@ -242,16 +241,25 @@ function clearForm() {
     document.getElementById('username').value = '';
     document.getElementById('password').value = '';
     document.getElementById('confirm-password').value = '';
-    document.getElementById('agree').checked = false;
+    // document.getElementById('agree').checked = false;
 }
 
 
-//  PASSWORD VISIBILITY
-  // const passwordInput = document.getElementById('password');
-  // const toggleVisibilityBtn = document.getElementById('togglePasswordVisibility');
+//  // PASSWORD VISIBILITY
+//   const passwordInput = document.getElementById('password');
+//   const toggleVisibilityBtn = document.getElementById('togglePasswordVisibility');
 
-  // toggleVisibilityBtn.addEventListener('click', function() {
-  //   const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-  //   passwordInput.setAttribute('type', type);
-  // });
+//   toggleVisibilityBtn.addEventListener('click', function() {
+//     const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+//     passwordInput.setAttribute('type', type);
+//   });
 
+    // PASSWORD VISIBILITY =======
+    function myFunction() {
+      var x = document.getElementById("password");
+      if (x.type === "password") {
+        x.type = "text";
+      } else {
+        x.type = "password";
+      }
+    }
