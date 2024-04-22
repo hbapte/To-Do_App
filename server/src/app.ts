@@ -1,11 +1,6 @@
 import express, { Express, Request, Response } from "express";
 import path from "path";
-import loginController from "./modules/tasks/controllers/loginController";
-import registerController  from "./modules/tasks/controllers/registerController";
-import forgotPasswordController from "./modules/tasks/controllers/forgotPasswordController";
-import { passwordResetController } from "./modules/tasks/controllers/resetPasswordController";
-import { validateRegistration } from "./middlewares/registerValidation";
-import authMiddleware from './middlewares/authMiddleware';
+import indexRouter from "./routes/index";
 const cookieParser = require('cookie-parser');
 import taskRoutes from "./routes/taskRoutes";
 import "./database/config/db";  
@@ -50,14 +45,10 @@ app.get("/forgot-password", (req: Request, res: Response) => {
 });
 
 
-//Routes
-app.use("/login", loginController);
-app.use("/register", registerController);
-app.use("/forgot-password", forgotPasswordController);
-app.use("/reset-password", passwordResetController);
+// Mount all API routes under '/api'
+app.use('/api/tasks', taskRoutes);
+app.use('/api', indexRouter);
 
-
-app.use("/tasks", taskRoutes); 
 
 
 
@@ -67,3 +58,9 @@ app.listen(port, () => {
 });
 
 export default app;
+
+
+
+
+
+
