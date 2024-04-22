@@ -1,4 +1,3 @@
-// forgot-password.js
 document.getElementById('password-reset-form').addEventListener('submit', function (event) {
   event.preventDefault();
 
