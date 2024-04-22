@@ -18,7 +18,6 @@ function handleLogin(emailUsername, password, rememberMe) {
         return response.json();
       })
       .then(data => {
-        // Handle successful login
         console.log('Login successful:', data);
         showSuccessMessage();
         clearLoginForm();
