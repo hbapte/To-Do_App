@@ -1,12 +1,13 @@
-import express from 'express';
-// import { registerUser,loginUser } from '../controllers/loginController';
-import { validateRegistration} from '../middlewares/registerValidation';
-import{validateLogin } from '../middlewares/loginValidationMiddleware';
+import express from "express";
+import loginController from "../modules/users/controller/loginController";
+import registerController from "../modules/users/controller/registerController";
 
-const router = express.Router();
 
-router.post('/register', validateRegistration,);
 
-router.post('/login', validateLogin, );
+const authRouter = express.Router();
 
-export default router;
+authRouter.post("/register", registerController);
+authRouter.post("/login", loginController);
+
+export default authRouter;
+
