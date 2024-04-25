@@ -9,6 +9,7 @@ interface User extends Document {
     emailVerificationToken: string;
     resetPasswordToken?: string;
     resetPasswordExpires?: Date;
+
 }
 
 const userSchema: Schema = new Schema({
@@ -20,7 +21,6 @@ const userSchema: Schema = new Schema({
     emailVerificationToken: { type: String },
     resetPasswordToken: String,
     resetPasswordExpires: Date,
-      
 });
 
 

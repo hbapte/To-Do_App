@@ -6,8 +6,6 @@ import taskRoutes from "./routes/taskRoutes";
 import "./database/config/db";  
 
 
-
-
 const app: Express = express();
 const port = process.env.PORT;
 
@@ -40,16 +38,10 @@ app.get("/reset-password", (req: Request, res: Response) => {
   res.sendFile(path.join(__dirname, '..', 'client', 'reset-pswd.html'));
 });
 
-app.get("/forgot-password", (req: Request, res: Response) => {
-  res.sendFile(path.join(__dirname, '../../', 'client', 'forgot-pswd.html'));
-});
-
 
 // Mount all API routes under '/api'
 app.use('/api/tasks', taskRoutes);
 app.use('/api', indexRouter);
-
-
 
 
 // Start the server
@@ -58,9 +50,3 @@ app.listen(port, () => {
 });
 
 export default app;
-
-
-
-
-
-
