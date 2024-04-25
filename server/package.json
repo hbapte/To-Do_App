@@ -10,9 +10,11 @@
     "express": "^4.19.2",
     "express-validator": "^7.0.1",
     "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.3.1",
+    "mongoose": "^8.3.2",
     "nodemailer": "^6.9.13",
     "nodemon": "^3.1.0",
+    "passport": "^0.7.0",
+    "passport-jwt": "^4.0.1",
     "typescript": "^5.4.5"
   },
   "devDependencies": {
@@ -20,15 +22,17 @@
     "@types/chai": "^4.3.14",
     "@types/expect": "^24.3.0",
     "@types/mocha": "^10.0.6",
+    "@types/passport-jwt": "^4.0.1",
     "chai": "^4.3.4",
     "chai-http": "^4.4.0",
     "mocha": "^10.4.0",
     "nyc": "^15.1.0",
     "ts-mocha": "^10.0.0",
     "ts-node": "^10.9.2"
-  },  "scripts": {
+  },
+  "scripts": {
     "build": "tsc",
-    "start": "ts-node src/app.ts",
+    "start": "node dist/index.js",
     "dev": "nodemon src/app.ts",
     "coveralls": "nyc --reporter=lcov --reporter=text-lcov npm test | coveralls",
     "test": "ts-mocha 'src/modules/**/*.spec.ts' --timeout 300000 --exit",
